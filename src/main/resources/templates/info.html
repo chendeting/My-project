@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-md-12 pd-left-0 pd-right-0">
+        <ol class="breadcrumb">
+            <li><a href="#">信息管理</a></li>
+            <li class="active">个人信息</li>
+        </ol>
+    </div>
+</div>
+
+<form class="form-horizontal" id="userinfo-form">
+    <div class="form-group">
+        <label for="username" class="col-sm-2 control-label"><span class="required">*</span>用户名</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" readonly="readonly"
+                   th:value="${#httpServletRequest.remoteUser}"
+                   name="username" id="username" placeholder="用户名"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="name" class="col-sm-2 control-label"><span class="required">*</span>姓名</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" autocomplete="false" th:value="${user.name}" name="name" id="name" placeholder="姓名"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="password" class="col-sm-2 control-label">新密码</label>
+        <div class="col-sm-5">
+            <input type="password" class="form-control" value="" autocomplete="false" name="password" id="password"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="card-id" class="col-sm-2 control-label"><span class="required">*</span>身份证号</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" th:value="${user.cardNo}" name="cardNo" id="card-id"
+                   placeholder="证件号码"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="phone" class="col-sm-2 control-label"><span class="required">*</span>联系电话</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" th:value="${user.phone}" name="phone" id="phone"
+                   placeholder="联系电话"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="email" class="col-sm-2 control-label">电子邮箱</label>
+        <div class="col-sm-5">
+            <input type="email" class="form-control" th:value="${user.email}" name="email" id="email"
+                   placeholder="test@qq.com"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-5">
+            <button type="button" class="btn btn-default" onclick="updateInfomation()">确定</button>
+        </div>
+    </div>
+</form>

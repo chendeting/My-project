@@ -1,0 +1,88 @@
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>车次</th>
+        <th>出发时间</th>
+        <th>软卧</th>
+        <th>硬卧</th>
+        <th>软座</th>
+        <th>硬座</th>
+        <th>无座</th>
+        <th>备注</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="trip : ${trips}">
+        <td th:text="${trip.trainNo}"></td>
+        <td th:text="${#dates.format(trip.departureDate,'HH:mm')}"></td>
+        <td th:text="${trip.train.softSleeper}"></td>
+        <td th:text="${trip.train.hardSleeper}"></td>
+        <td th:text="${trip.train.softSeat}"></td>
+        <td th:text="${trip.train.hardSeat}"></td>
+        <td th:text="${trip.train.noSeat}"></td>
+        <td><a href="#" class="btn btn-default"
+               th:attr="id=${trip.train.id},tripNo=${trip.trainNo},departure=${trip.departure},destination=${trip.destination},
+               departureDate=${#dates.format(trip.departureDate,'YYYY-MM-dd HH:mm')}"
+               onclick="orderTicket(this)"
+               style="padding-top: 0;padding-bottom: 0">订票</a></td>
+    </tr>
+    </tbody>
+</table>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form action="" th:action="@{/train/order}" method="post" id="js-order-ticket-form">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">列车信息</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <strong id="js-train">D4578</strong><span class="min-font">次</span>
+                        <strong id="js-departureDate">2017-02-07 16:33:56</strong>
+                        <strong id="js-departure">成都东</strong><span class="min-font">站</span>
+                        <strong>-</strong>
+                        <strong id="js-destination">重庆</strong><span class="min-font">站</span>
+                    </p>
+                    <table class="table modal-table">
+                        <tbody>
+                        <tr>
+                            <td>席别</td>
+                            <td>姓名</td>
+                            <td>证件号码</td>
+                            <td>联系电话</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select name="seatType">
+                                    <option value="hard_sleeper">硬卧</option>
+                                    <option value="soft_sleeper">软卧</option>
+                                    <option value="hard_seat">硬座</option>
+                                    <option value="soft_seat">软座</option>
+                                    <option value="no_seat">无座</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="text" name="name"/>
+                            </td>
+                            <td>
+                                <input type="text" name="cardNo"/>
+                            </td>
+                            <td>
+                                <input type="text" name="phone"/>
+                                <input type="hidden" name="trainId" id="js-id-input"/>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" onclick="submitOrderTicket()">确定</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

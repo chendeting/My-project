@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-9"/>
+    <title>用户注册</title>
+    <link type="text/css" href="../static/css/bootstrap-admin.min.css"
+          th:href="@{/css/bootstrap-admin.min.css}" rel="stylesheet"/>
+    <link type="text/css" href="../static/css/login.css" th:href="@{/css/login.css}" rel="stylesheet"/>
+    <link type="text/css" href="../static/css/validate.css" th:href="@{/css/validate.css}" rel="stylesheet"/>
+</head>
+<body>
+<div class="container-fluid" id="regist">
+    <div class="row">
+        <div class="title">
+            <h1>用户注册</h1>
+        </div>
+        <div class="login">
+            <form method="post" th:action="@{/train/regist}" id="js-register">
+                <div class="form-group need-validate">
+                    <label for="username">用户名</label>
+                    <input type="text" class="form-control " id="username" name="username" placeholder="用户名"/>
+                </div>
+                <div class="form-group need-validate">
+                    <label for="name">姓名</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="姓名"/>
+                </div>
+                <div class="form-group need-validate">
+                    <label for="cardNo">身份证号</label>
+                    <input type="text" class="form-control" id="cardNo" name="cardNo" placeholder="身份证号"/>
+                </div>
+                <div class="form-group need-validate">
+                    <label for="phone">联系电话</label>
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="联系电话"/>
+                </div>
+                <div class="form-group need-validate">
+                    <label for="email">邮箱</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="邮箱"/>
+                </div>
+                <div class="form-group need-validate">
+                    <label for="password">密码</label>
+                    <input type="password" class="form-control" id="password" name="password"/>
+                </div>
+                <div class="form-group need-validate">
+                    <label for="repeatPassword">确认密码</label>
+                    <input type="password" class="form-control" id="repeatPassword" name="repeatPassword"/>
+                </div>
+                <button type="submit" class="btn btn-default">注册</button>
+                <span style="font-size: 12px;color: red" th:text="${message}"></span>
+            </form>
+        </div>
+        <div class="register text-center">
+            <p>已有账号？<a href="#" th:href="@{/train/login}">直接登录。</a></p>
+        </div>
+    </div>
+</div>
+<script src="../static/js/jquery-1.11.2.min.js" th:src="@{/js/jquery-1.11.2.min.js}"></script>
+<script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+<script src="../static/js/jquery.validate.min.js" th:src="@{/js/jquery.validate.min.js}"></script>
+<script src="../static/js/validate-base.js" th:src="@{/js/validate-base.js}"></script>
+<script src="../static/js/regist.js" th:src="@{/js/regist.js}"></script>
+</body>
+</html>
